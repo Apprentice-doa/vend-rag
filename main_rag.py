@@ -27,7 +27,7 @@ INDEX_NAME = "vendai"
 PINECONE_API_KEY = os.getenv(
     "PINECONE_API_KEY"
 )
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+#OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # ------------------------------------------------------------------------------
 # Initialize External Services
@@ -35,16 +35,6 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Initialize PineconeGRPC client
 pc = PineconeGRPC(api_key=PINECONE_API_KEY)
-
-# Initialize the language model
-llm = ChatOpenAI(
-    model="gpt-4o",
-    temperature=0,
-    max_tokens=None,
-    timeout=None,
-    max_retries=2
-)
-
 # Set up the prompt template for the retrieval QA chain
 PROMPT_TEMPLATE = PromptTemplate(
     template=(
@@ -136,10 +126,20 @@ vector_db = PineconeVectorStore.from_existing_index(
     index_name=INDEX_NAME,
     embedding=embeddings
 )
-def retrieve_information(query: str) -> str:
+def retrieve_information(query: str, key: str) -> str:
     """
     Retrieve relevant context and answer a query using a retrieval QA chain.
     """
+    OPEN_API_KEY = key
+
+    # Initialize the language model
+    llm = ChatOpenAI(
+        model="gpt-4o",
+        temperature=0,
+        max_tokens=None,
+        timeout=None,
+        max_retries=2
+    )
     # Initialize Pinecone index for similarity search
     retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
     

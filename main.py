@@ -241,7 +241,7 @@ def chat_page():
                 st.session_state.messages.append({"role": "assistant", "content": result})
             elif func_name == "perform_rag":
                 query_text = args.get("query", "")
-                result = main_rag.retrieve_information(query_text)
+                result = main_rag.retrieve_information(query_text, openai.api_key)
                 with st.chat_message("assistant"):
                     st.markdown(result)
                 st.session_state.messages.append({"role": "assistant", "content": result})
