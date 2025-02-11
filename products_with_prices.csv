@@ -1,0 +1,21 @@
+category,sub-category,product,price (USD)
+Food,Fruits,Apple,0.6
+Food,Fruits,Banana,0.3
+Food,Vegetables,Carrot,0.25
+Food,Vegetables,Broccoli,1.5
+Food,Grains,Rice (1 lb),2.0
+Food,Grains,Quinoa (1 lb),4.0
+Food,Proteins,Chicken Breast (1 lb),5.5
+Food,Proteins,Tofu (14 oz),2.0
+Food,Dairy,Milk (1 gallon),3.99
+Food,Dairy,Cheddar Cheese (1 lb),5.86
+Drinks,Soft Drinks,Coca-Cola (12 oz),1.5
+Drinks,Soft Drinks,Pepsi (12 oz),1.5
+Drinks,Juices,Orange Juice (1 gallon),6.0
+Drinks,Juices,Apple Juice (1 gallon),5.5
+Drinks,Tea,Green Tea (20 bags),3.0
+Drinks,Tea,Black Tea (20 bags),2.5
+Drinks,Coffee,Espresso (1 shot),2.0
+Drinks,Coffee,Latte (12 oz),4.0
+Drinks,Water,Evian Water (1.5 liters),2.0
+Drinks,Water,Spring Water (1.5 liters),1.0
