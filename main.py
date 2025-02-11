@@ -70,16 +70,17 @@ When there is no clear answer, ask follow-up questions to clarify the user's int
 # ------------------------------------------------------------------------------
 # Local Functions (Python Native Implementations)
 # ------------------------------------------------------------------------------
+
+llm = ChatOpenAI(
+    model="gpt-4o",
+    temperature=0,
+    max_tokens=150
+)
 def local_generate_sql(query: str) -> str:
     """
     Generate a SQL query from the user's natural language request.
     (This uses a simple prompt via ChatOpenAI for demonstration.)
     """
-    llm = ChatOpenAI(
-        model="gpt-4o",
-        temperature=0,
-        max_tokens=150
-    )
     prompt_template = PromptTemplate(
         template="Generate a SQL query for the following request: {query}",
         input_variables=["query"]
@@ -241,7 +242,7 @@ def chat_page():
                 st.session_state.messages.append({"role": "assistant", "content": result})
             elif func_name == "perform_rag":
                 query_text = args.get("query", "")
-                result = main_rag.retrieve_information(query_text, openai.api_key)
+                result = main_rag.retrieve_information(query_text, llm)
                 with st.chat_message("assistant"):
                     st.markdown(result)
                 st.session_state.messages.append({"role": "assistant", "content": result})

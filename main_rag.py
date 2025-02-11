@@ -126,20 +126,12 @@ vector_db = PineconeVectorStore.from_existing_index(
     index_name=INDEX_NAME,
     embedding=embeddings
 )
-def retrieve_information(query: str, key: str) -> str:
+def retrieve_information(query: str, model) -> str:
     """
     Retrieve relevant context and answer a query using a retrieval QA chain.
     """
-    OPEN_API_KEY = key
-
     # Initialize the language model
-    llm = ChatOpenAI(
-        model="gpt-4o",
-        temperature=0,
-        max_tokens=None,
-        timeout=None,
-        max_retries=2
-    )
+    llm = model
     # Initialize Pinecone index for similarity search
     retriever = vector_db.as_retriever(search_type="similarity", search_kwargs={"k": 3})
     
